@@ -4,6 +4,10 @@ const { Media } = require( './../models/Media' );
 const autoBind = require( 'auto-bind' );
 const multer = require( 'multer' );
 const fs = require( 'fs' );
+    //requiring path and fs modules
+    const path = require('path');
+    //joining path of directory 
+    const directoryPath = path.join(__dirname, '../uploads');
 const utils = require( '../../system/helpers/Utility' ),
     config = require( '../../config/config' ).getConfig(),
     mediaService = new MediaService(
@@ -55,6 +59,29 @@ class MediaController extends Controller {
         }
     }
 
+    async getImageList( req, res, next ) {
+        try {
+           //passsing directoryPath and callback function
+            fs.readdir(config.UPLOAD_PATH, function (err, files) {
+                let fileList = []
+                //handling error
+                if (err) {
+                    return console.log('Unable to scan directory: ' + err);
+                } 
+                //listing all files using forEach
+                files.forEach(function (file) {
+                    // Do whatever you want to do with the file
+                    fileList.push(file)
+                });
+
+                return res.status( 200 ).json( files );
+            });
+            
+        } catch ( e ) {
+            next( e );
+        }
+    }
+
     fileFilter = ( req, file, cb ) => {
         // reject a file
         if ( file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/gif' ) {
@@ -63,6 +90,9 @@ class MediaController extends Controller {
             cb( null, false );
         }
     };
+
+
+
 
     async delete( req, res, next ) {
         const { id } = req.params;

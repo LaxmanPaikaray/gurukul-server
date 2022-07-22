@@ -6,7 +6,7 @@ const ExcelDataUploadController = require('../controllers/ExcelDataUploadControl
 
 router.get( '/:id', AuthController.checkLogin, ExcelDataUploadController.get );
 router.post( '/', [ ExcelDataUploadController.upload.single( 'file' ) ], ExcelDataUploadController.insert );
-router.delete( '/:id', AuthController.checkLogin, ExcelDataUploadController.delete );
+// router.delete( '/:id', AuthController.checkLogin, ExcelDataUploadController.delete );
 
 
 module.exports = router;
