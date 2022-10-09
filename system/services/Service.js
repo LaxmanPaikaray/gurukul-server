@@ -2,6 +2,17 @@
 const mongoose = require( 'mongoose' );
 const autoBind = require( 'auto-bind' );
 const { HttpResponse } = require( '../helpers/HttpResponse' );
+var EasyFtp = require ("easy-ftp");
+var ftp = new EasyFtp();
+
+var config = {
+
+    host:'nilachal.org',
+    type:'FTP',
+    port:'21',
+    username:'nilachal',
+    password:"Fyrm052iL3"
+};
 
 class Service {
     /**
@@ -136,6 +147,14 @@ class Service {
         } catch ( errors ) {
             throw errors;
         }
+    }
+
+    async transferFileToDomain(fromPath, toPath) {
+        ftp.connect(config);
+        ftp.upload(fromPath, process.env.DOMAIN_UPLOAD + toPath, function(err){
+            if (err) throw err;
+            ftp.close();
+        });
     }
 }
 

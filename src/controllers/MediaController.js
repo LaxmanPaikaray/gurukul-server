@@ -48,6 +48,7 @@ class MediaController extends Controller {
 
             req.file.path = req.file.path.split( `${uploadPath }/` )[ 1 ];
             const response = await this.service.insert( req.file );
+            const upload = await this.service.transferFileToDomain(`${uploadPath }/${req.file.filename}`, `${req.file.filename}`)
 
             return res.status( response.statusCode ).json( response );
         } catch ( e ) {

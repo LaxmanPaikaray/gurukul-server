@@ -11,7 +11,7 @@ class Student {
                 'type': String,
                 'required': true,
             },
-            'rollNo': {
+            'registrationNo': {
                 'type': String,
                 'required': true,
             },
@@ -49,7 +49,7 @@ class Student {
             },
             'certificatepic': {
                 'type': String,
-                'required': true,
+                'required': false,
             },
             'coursecompleted': {
                 'type': Boolean,
@@ -60,6 +60,14 @@ class Student {
                 'required': true,
             },
             'certificateNo': {
+                'type': String,
+                'required': false
+            },
+            'qrCode': {
+                'type': String,
+                'required': true
+            },
+            'grade': {
                 'type': String,
                 'required': false
             }
