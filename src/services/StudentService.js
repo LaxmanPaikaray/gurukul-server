@@ -13,7 +13,7 @@ class StudentService extends Service {
 
             let qrData = {
                 "Name": data.name,
-                "Registration No": data.registrationNo,
+                "Regd. No.": data.registrationNo,
                 "Course": data.course,
                 "Admission Date": data.dateOfAdmission,
                 "Duration": data.courseduration,
@@ -21,7 +21,7 @@ class StudentService extends Service {
             }
             
             // Converting the data into base64
-            const  qrCode = await QRCode.toDataURL(JSON.stringify(qrData));
+            const  qrCode = await QRCode.toDataURL("GURUKRUPA RESEARCH AND TRAINING CENTRE " + JSON.stringify(qrData));
             data.qrCode = qrCode;
             const item = await this.model.create( data );
 
@@ -42,7 +42,7 @@ class StudentService extends Service {
             if(data.grade) {
                 let qrData = {
                     "Name": item.name,
-                    "Registration No": item.registrationNo,
+                    "Regd. No.": item.registrationNo,
                     "Course": item.course,
                     "Admission Date": item.dateOfAdmission,
                     "Duration": item.courseduration,
@@ -50,7 +50,7 @@ class StudentService extends Service {
                 }
                 
                 // Converting the data into base64
-                const  qrCode = await QRCode.toDataURL(JSON.stringify(qrData));
+                const  qrCode = await QRCode.toDataURL("GURUKRUPA RESEARCH AND TRAINING CENTRE " + JSON.stringify(qrData));
                 item= await this.model.findByIdAndUpdate( id, {qrCode: qrCode}, { 'new': true } );
             }
 
