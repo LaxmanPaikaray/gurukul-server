@@ -45,7 +45,7 @@ class CertificateApply {
             },
             'courseduration': {
                 'type': String,
-                'required': true,
+                'required': true
             },
             'registrationNo': {
                 'type': String,
