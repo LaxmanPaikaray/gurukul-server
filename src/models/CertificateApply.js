@@ -49,7 +49,7 @@ class CertificateApply {
             },
             'registrationNo': {
                 'type': String,
-                'required': true,
+                'required': true
             }
         }, { 'timestamps': true })
 
