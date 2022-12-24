@@ -150,10 +150,17 @@ class Service {
     }
 
     async transferFileToDomain(fromPath, toPath) {
+        console.log("transfer file from amazon to gurukul")
         ftp.connect(config);
+        console.log("ftp connected")
         ftp.upload(fromPath, process.env.DOMAIN_UPLOAD + toPath, function(err){
-            if (err) throw err;
+            if (err){
+                console.log("file upload error")
+                throw err;
+            } 
+            console.log("file uploaded")
             ftp.close();
+            console.log("connection closed")
         });
     }
 }
