@@ -152,7 +152,7 @@ class Service {
     async transferFileToDomain(fromPath, toPath) {
         console.log("transfer file from amazon to gurukul")
         ftp.connect(config);
-        console.log("ftp connected")
+        console.log("ftp connected, copying from "+ fromPath + " to " + process.env.DOMAIN_UPLOAD + toPath )
         ftp.upload(fromPath, process.env.DOMAIN_UPLOAD + toPath, function(err){
             if (err){
                 console.log("file upload error")
