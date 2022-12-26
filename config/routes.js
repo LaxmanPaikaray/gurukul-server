@@ -25,6 +25,7 @@ module.exports.setRoutes = ( app ) => {
      * Currently Media module is uploading files into this directory.
      */
     app.use( '/uploads', express.static( path.join( __dirname, '../uploads' ) ) );
+    app.use( '/studentupload', express.static( path.join( __dirname, '../studentupload' ) ) );
 
     /**
      * If No route matches. Send user a 404 page
